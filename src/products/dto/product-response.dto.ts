@@ -1,49 +1,52 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import {
-  IsBoolean,
-  IsNumber,
-  IsOptional,
-  IsPositive,
-  IsString,
-  MinLength,
-} from 'class-validator';
+import { IsOptional } from 'class-validator';
 
-export class CreateProductDto {
-  @IsString()
-  @MinLength(3, { message: 'Description must be at least 10 characters long' })
+export class ProductDtoDocsRes {
   @ApiProperty({
+    required: false,
+    description: 'Product uuid',
+    type: String,
+  })
+  @IsOptional()
+  @Type(() => String)
+  id: string;
+
+  @ApiProperty({
+    required: false,
     description: 'Product title',
     minLength: 3,
   })
-  title: string;
-
-  @IsString()
-  @MinLength(10)
   @IsOptional()
+  @Type(() => String)
+  title?: string;
+
   @ApiProperty({
+    required: false,
     description: 'Product title (unique)',
     nullable: true,
     minLength: 10,
     uniqueItems: true,
   })
+  @IsOptional()
+  @Type(() => String)
   sku?: string;
 
-  @IsBoolean()
-  @IsOptional()
   @ApiProperty({
+    required: false,
     description: 'Product availability',
     nullable: true,
   })
+  @IsOptional() // no Type xq es boolean y siempre es true
   hasStock?: boolean;
 
-  @IsNumber()
-  @IsPositive()
-  @Type(() => Number) // intenta convertir el valor a un número (util dtos anidados)
   @ApiProperty({
+    required: false,
     description: 'Product price',
     minimum: 0,
     type: Number,
   })
+  @IsOptional()
+  @Type(() => Number)
   price: number;
 }

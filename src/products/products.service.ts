@@ -9,6 +9,7 @@ import { Repository } from 'typeorm';
 
 import { PaginationDto } from 'src/shared/dto';
 import { createRandomSku } from 'src/shared/utils';
+import { ProductDtoDocsRes } from './dto';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
@@ -36,13 +37,15 @@ export class ProductsService {
     }
   }
 
-  async findAll(paginationDto: PaginationDto) {
+  async findAll(paginationDto: PaginationDto, filterParams: ProductDtoDocsRes) {
     const { limit, offset } = paginationDto;
 
     const [products, count] = await Promise.all([
       this.productRepository.find({
         take: limit,
         skip: offset,
+        // filter - exact match ----
+        where: filterParams,
       }),
       this.productRepository.count(),
     ]);

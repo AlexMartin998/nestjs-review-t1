@@ -64,3 +64,36 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 
 
+
+
+
+  <!-- /* ================================================================ -->
+  ### Documentar con OpenAPI
+  -- Documentacion - OpenAPI: https://docs.nestjs.com/openapi/introduction
+    - Instalamos dependencias:    `pnpm add @nestjs/swagger`
+
+    - OpenAPI es el Standar, Swagger es la implementacion
+      - Configuramos en el      `main.ts`
+        - Crea el cascaron vacio de la doc en  /api
+  ```js
+    // // docs    <---   main.ts
+    const config = new DocumentBuilder()
+      .setTitle('Teslo example')
+      .setDescription('Tesloshop REST API')
+      .setVersion('1.0')
+      .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, document); // endpoint  /api
+  ```
+
+    - Debemos empezar a definir como luce cada enpoint/dto para la doc
+      - @ApiTags('Products'): Separar x tags  en el Controller
+        -  @ApiResponse({ status: 201, description: 'Product was created' , type: Product})
+      - @ApiProperty({})  en la Entity/DTO
+
+    - -- Tengo mi propio decorador
+
+
+
+
+
