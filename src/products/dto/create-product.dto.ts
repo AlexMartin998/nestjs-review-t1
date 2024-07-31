@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
 import {
+  IsBoolean,
   IsNumber,
   IsOptional,
   IsPositive,
@@ -10,12 +11,16 @@ import {
 export class CreateProductDto {
   @IsString()
   @MinLength(3, { message: 'Description must be at least 10 characters long' })
-  name: string;
+  title: string;
 
   @IsString()
   @MinLength(10)
   @IsOptional()
-  description?: string;
+  sku?: string;
+
+  @IsBoolean()
+  @IsOptional()
+  hasStock?: boolean;
 
   @IsNumber()
   @IsPositive()

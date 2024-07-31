@@ -44,6 +44,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 
 
+
 ### DOCS:
 -- Configurar las Environment Variables
   - Requiere algunas dependencies   ``
@@ -53,8 +54,13 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
   - Usaremos zod para las validaciones. Solo puede hacer un forRoot ne cafa poblacion
 
 
+
       https://docs.nestjs.com/techniques/database
--- Instalar dependencias para W con DB (PostgreSQL - TypeORM)
+-- Instalar dependencias para W con `DB` (PostgreSQL - TypeORM)
 - Dependencias:   `pnpm add @nestjs/typeorm typeorm pg`
 - En el `app.module.ts`
   - En los  imports=[]  colocamos el   `TypeOrmModule.forRoot({})`  con sus respectivas cnofiguracioens
+  - Solo puede exister un  `.forRoot()`   para cualquier module, el resto son   `.forFeature()`
+
+
+
