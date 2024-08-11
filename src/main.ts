@@ -1,20 +1,19 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 
 // swagger
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { envs } from './config/envs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // // logger ------------
   const logger = new Logger('Bootstrap');
-  // Get EnvV
-  const configService = app.get(ConfigService);
-  const PORT = configService.get<number>('PORT');
+  // Get EnvV without configService
+  const PORT = envs.PORT;
 
   // // set global prefix ------------
   app.setGlobalPrefix('api');
