@@ -46,12 +46,12 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 
 ### DOCS:
--- Configurar las Environment Variables
-  - Requiere algunas dependencies   ``
+-- Configurar las `Environment Variables` -> `.env`   <--- Esta es la mas usada para REST, pero para Microservices complica un poco las cosas, asi q se usa otra forma
+  - Requiere algunas dependencies: zod, 
   - En el `app.module.ts`
     - En los   imports=[] colocamos el  `ConfigModule.forRoot()`, al principio
-    - Las usamos con el  process.envi.NAME
-  - Usaremos zod para las validaciones. Solo puede hacer un forRoot ne cafa poblacion
+    - Las usamos con el  `process.envi.NAME`
+  - Usaremos `zod` para las validaciones. Solo puede haber un `.forRoot()` x cada MODULO, el resto es `.forFeature()` en cada MODULO q lo use
 
 
 
